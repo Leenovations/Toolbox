@@ -4,12 +4,11 @@ import pandas as pd
 Files = sys.argv[1:]
 
 for order, cnt in enumerate(Files):
+    Sample_name = cnt.split('.')[0]
     if order == 0:
-        Sample_name = cnt.split('_')[0]
         Data_first = pd.read_csv(cnt, sep='\t', header=None, names=['ID', Sample_name])
         Data_first = Data_first[Data_first['ID'].str.startswith('E')]
     else:
-        Sample_name = cnt.split('_')[0]
         Data_rest = pd.read_csv(cnt, sep='\t', header=None, names=['ID', Sample_name])
         Data_rest = Data_rest[Data_rest['ID'].str.startswith('E')]
         Data_first = pd.merge(Data_first, Data_rest, on='ID')

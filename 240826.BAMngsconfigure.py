@@ -62,7 +62,7 @@ elif BATCH['Node'] == 'node02' and int(BATCH['CPU']) > 56:
     raise ValueError("\033[91mValueError: Total CPU is less than 56\033[0m")
 elif BATCH['Node'] == 'node03' and int(BATCH['CPU']) > 32:
     raise ValueError("\033[91mValueError: Total CPU is less than 32\033[0m")
-elif BATCH['Node'] == 'node04' and int(BATCH['CPU']) > 28:
+elif BATCH['Node'] == 'node04' and int(BATCH['CPU']) > 56:
     raise ValueError("\033[91mValueError: Total CPU is less than 28\033[0m")
 #-----------------------------------------------------------------------------#
 if BATCH['Node'] == 'node04':
@@ -184,7 +184,7 @@ with open('BAMSampleSheet.txt', 'r') as samplesheet:
                             + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
                             + f"#SBATCH -n {Cpu}" + '\n'
                             + '\n'
-                            + f"python3 {Code} {splitted[1]} {splitted[1].replace('bam', 'varscan2.prcd.vcf')} {Name} -T fastq -N {Cpu}")
+                            + f"python3 {Code} {splitted[1]} {splitted[1].replace('bam', 'Germline.prcd.vcf')} {Name} -T fastq -N {Cpu}")
         else:
             with open(f'{Name}/BAMjob.sh', 'w') as note:
                 note.write("#!/bin/bash" + '\n'
