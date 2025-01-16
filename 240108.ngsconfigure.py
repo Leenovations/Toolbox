@@ -135,6 +135,18 @@ elif BATCH['Run.type'] == 'RNA':
     else:
         command = "mkdir -p Genecount/"
         os.system(command)
+elif BATCH['Run.type'] == 'Splicing':
+    Code = '/labmed/00.Code/Pipeline/Splicing.py FASTQ'
+    if os.path.isdir("Genecount"):
+        pass
+    else:
+        command = "mkdir -p Genecount/"
+        os.system(command)
+    if os.path.isdir("Leafcutter"):
+        pass
+    else:
+        command = "mkdir -p Leafcutter/"
+        os.system(command)
 elif BATCH['Run.type'] == 'Gleevec':
     Code = '/labmed/00.Code/Pipeline/Imatinib.py FASTQ'
     if os.path.isdir("Results"):
