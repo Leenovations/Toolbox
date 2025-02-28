@@ -15,7 +15,7 @@ with open(sys.argv[1], 'r') as gtf:
                     End = int(splitted[4])
                     length = str(End - Start)
                     Info = splitted[8].split(';') #버전에 따라 Info 순서 다를 수 있음
-                    ID = Info[0].split('"')[1] 
-                    Type = Info[1].split('"')[1]
-                    GeneSymbol = Info[2].split('"')[1]
+                    ID = Info[1].split('=')[1] # GFF는 [1] GTF는 [0]
+                    Type = Info[2].split('=')[1]
+                    GeneSymbol = Info[1].split('=')[1]
                     note.write(ID + '\t' + GeneSymbol + '\t' + Type + '\t' + length + '\n')

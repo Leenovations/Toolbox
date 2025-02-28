@@ -154,6 +154,14 @@ elif BATCH['Run.type'] == 'Gleevec':
     else:
         command = "mkdir -p Results/"
         os.system(command)
+
+elif BATCH['Run.type'] == 'Varaser':
+    Code = '/labmed/00.Code/Varaser/Varaser.RNA.v1.py'
+    if os.path.isdir("Results"):
+        pass
+    else:
+        command = "mkdir -p Results/"
+        os.system(command)
 #-----------------------------------------------------------------------------#
 with open('SampleSheet.txt', 'r') as samplesheet:
     num = 0
@@ -178,27 +186,50 @@ with open('SampleSheet.txt', 'r') as samplesheet:
                 for Key in BATCH.keys():
                     note.write(Key + '=' + str(BATCH[Key]) + '\n')
 
-        with open(f'{Name}/job.sh', 'w') as note:
-            note.write("#!/bin/bash" + '\n'
-                        + "#" + '\n'
-                        + f"#SBATCH -J {BATCH['Run.type']}.{Name}" + '\n'
-                        + f"#SBATCH -o Log.%j.out" + '\n'
-                        # + f"#SBATCH -e Error.%j.out" + '\n'
-                        + f"#SBATCH --time=UNLIMITED" + '\n'
-                        + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
-                        + f"#SBATCH -n {Cpu}" + '\n'
-                        + '\n'
-                        + f'Memory=$(echo "$(free -g | grep Mem | awk \'{{print $7}}\') * 0.7 / {Sample_Count}" | bc)' + '\n'
-                        + f"echo Memory=$Memory >> {Name}.batch.config" + '\n'
-                        + f"python3 {Code}")
+        if BATCH['Run.type'] == 'Varaser':
+            with open(f'{Name}/03.Output/job.sh', 'w') as note:
+                note.write("#!/bin/bash" + '\n'
+                            + "#" + '\n'
+                            + f"#SBATCH -J {BATCH['Run.type']}.{Name}" + '\n'
+                            + f"#SBATCH -o Log.%j.out" + '\n'
+                            # + f"#SBATCH -e Error.%j.out" + '\n'
+                            + f"#SBATCH --time=UNLIMITED" + '\n'
+                            + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
+                            + f"#SBATCH -n {Cpu}" + '\n'
+                            + '\n'
+                            + f"python3 {Code} {Name}.sorted.bam {Name}.haplotype.prcd.vcf {Name} -T fastq -N {Cpu}")
+        else:
+            with open(f'{Name}/job.sh', 'w') as note:
+                note.write("#!/bin/bash" + '\n'
+                            + "#" + '\n'
+                            + f"#SBATCH -J {BATCH['Run.type']}.{Name}" + '\n'
+                            + f"#SBATCH -o Log.%j.out" + '\n'
+                            # + f"#SBATCH -e Error.%j.out" + '\n'
+                            + f"#SBATCH --time=UNLIMITED" + '\n'
+                            + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
+                            + f"#SBATCH -n {Cpu}" + '\n'
+                            + '\n'
+                            + f'Memory=$(echo "$(free -g | grep Mem | awk \'{{print $7}}\') * 0.7 / {Sample_Count}" | bc)' + '\n'
+                            + f"echo Memory=$Memory >> {Name}.batch.config" + '\n'
+                            + f"python3 {Code}")
         num += 1
 #-----------------------------------------------------------------------------#
-with open('Total.Run.sh', 'w') as note:
-    with open('SampleSheet.txt', 'r') as samp:
-        Sample_Count = 0
-        for line in samp:
-            line = line.strip()
-            splitted = line.split('\t')
-            Name = str(splitted[0])
-            note.write('cd ' + Dir + '/' + Name + '; ' + 'sbatch job.sh' + '\n')
+if BATCH['Run.type'] == 'Varaser':
+    with open('Total.Run.sh', 'w') as note:
+        with open('SampleSheet.txt', 'r') as samp:
+            Sample_Count = 0
+            for line in samp:
+                line = line.strip()
+                splitted = line.split('\t')
+                Name = str(splitted[0])
+                note.write('cd ' + Dir + '/' + Name + '/03.Output' + '; ' + 'sbatch job.sh' + '\n')
+else:
+    with open('Total.Run.sh', 'w') as note:
+        with open('SampleSheet.txt', 'r') as samp:
+            Sample_Count = 0
+            for line in samp:
+                line = line.strip()
+                splitted = line.split('\t')
+                Name = str(splitted[0])
+                note.write('cd ' + Dir + '/' + Name + '; ' + 'sbatch job.sh' + '\n')
 #-----------------------------------------------------------------------------#
