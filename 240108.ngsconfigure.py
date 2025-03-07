@@ -156,7 +156,7 @@ elif BATCH['Run.type'] == 'Gleevec':
         os.system(command)
 
 elif BATCH['Run.type'] == 'Varaser':
-    Code = '/labmed/00.Code/Varaser/Varaser.RNA.v2.py'
+    Code = '/labmed/00.Code/Varaser/Varaser.RNA.v3.py'
     if os.path.isdir("Results"):
         pass
     else:
