@@ -139,7 +139,7 @@ elif BATCH['Run.type'] == 'Gleevec':
         command = "mkdir -p Results/"
         os.system(command)
 elif BATCH['Run.type'] == 'Varaser':
-    Code = f'/labmed/00.Code/Varaser/Varaser.v3.py'
+    Code = f'/labmed/00.Code/Varaser/Varaser.RNA.v3.py'
     if os.path.isdir("Results"):
         pass
     else:
@@ -184,7 +184,7 @@ with open('BAMSampleSheet.txt', 'r') as samplesheet:
                             + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
                             + f"#SBATCH -n {Cpu}" + '\n'
                             + '\n'
-                            + f"python3 {Code} {splitted[1]} {splitted[1].replace('bam', 'Germline.prcd.vcf')} {Name} -T fastq -N {Cpu}")
+                            + f"python3 {Code} 03.Output/{Name}.sorted.bam 03.Output/{Name}.haplotype.prcd.vcf {Name} 03.Output -T fastq -N {Cpu}")
         else:
             with open(f'{Name}/BAMjob.sh', 'w') as note:
                 note.write("#!/bin/bash" + '\n'

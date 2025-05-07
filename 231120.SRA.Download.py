@@ -48,7 +48,7 @@ elif sys.argv[1] == 'fastq-dump':
                         '#SBATCH -o Log.%j.out' + '\n' + \
                         '#SBATCH --time=UNLIMITED' + '\n' + \
                         f'#SBATCH --nodelist={sys.argv[2]}' + '\n' + \
-                        '#SBATCH -n 2' + '\n' + '\n' + \
+                        '#SBATCH -n 4' + '\n' + '\n' + \
                         f'/media/src/Tools/sratoolkit.3.1.1-ubuntu64/bin/fastq-dump --split-files -gzip --outdir ../ {sra}')
 
     with open('Total.Run.sh', 'w') as note:
