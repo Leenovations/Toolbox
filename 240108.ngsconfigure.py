@@ -197,7 +197,7 @@ with open('SampleSheet.txt', 'r') as samplesheet:
                             + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
                             + f"#SBATCH -n {Cpu}" + '\n'
                             + '\n'
-                            + f"python3 {Code} {Name}.sorted.bam {Name}.haplotype.prcd.vcf {Name} -T fastq -N {Cpu}")
+                            + f"python3 {Code} {Name}.STAR.sorted.bam {Name}.haplotype.prcd.vcf {Name} -T fastq -N {Cpu}")
         else:
             with open(f'{Name}/job.sh', 'w') as note:
                 note.write("#!/bin/bash" + '\n'
