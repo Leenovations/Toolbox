@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import sys
 #------------------------------------------------------------------------#
 # AA = pd.read_csv('/media/src/Amino.Acid.txt', sep='\t', header=None,
 #                  names = ['full', 'alpha', 'abb'])
