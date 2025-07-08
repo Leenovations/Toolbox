@@ -58,14 +58,18 @@ with open('BAM.batch.config', 'r') as batch:
 #-----------------------------------------------------------------------------#
 if BATCH['Node'] == 'node01' and int(BATCH['CPU']) > 128:
     raise ValueError("\033[91mValueError: Total CPU is less than 128\033[0m")
-elif BATCH['Node'] == 'node02' and int(BATCH['CPU']) > 56:
+elif BATCH['Node'] == 'node02' and int(BATCH['CPU']) > 128:
     raise ValueError("\033[91mValueError: Total CPU is less than 56\033[0m")
-elif BATCH['Node'] == 'node03' and int(BATCH['CPU']) > 32:
-    raise ValueError("\033[91mValueError: Total CPU is less than 32\033[0m")
+elif BATCH['Node'] == 'node03' and int(BATCH['CPU']) > 128:
+    raise ValueError("\033[91mValueError: Total CPU is less than 56\033[0m")
 elif BATCH['Node'] == 'node04' and int(BATCH['CPU']) > 56:
-    raise ValueError("\033[91mValueError: Total CPU is less than 28\033[0m")
+    raise ValueError("\033[91mValueError: Total CPU is less than 56\033[0m")
+elif BATCH['Node'] == 'node05' and int(BATCH['CPU']) > 56:
+    raise ValueError("\033[91mValueError: Total CPU is less than 56\033[0m")
+elif BATCH['Node'] == 'node06' and int(BATCH['CPU']) > 32:
+    raise ValueError("\033[91mValueError: Total CPU is less than 32\033[0m")
 #-----------------------------------------------------------------------------#
-if BATCH['Node'] == 'node04':
+if BATCH['Node'] == 'node05':
     Cpu = int(BATCH['CPU'])
     Allocated_CPU = int(Cpu / Sample_Count)
     if Allocated_CPU < 1:
@@ -75,7 +79,7 @@ if BATCH['Node'] == 'node04':
         How_many = int(Cpu % Sample_Count) #분배를 1씩 해주는 경우 -> 용량에 따라 나누어야함
         for idx in Sample_Size_Idx[:How_many]:
             CPU[idx] += 1
-elif BATCH['Node'] != 'node04':
+elif BATCH['Node'] != 'node05':
     Cpu = int(BATCH['CPU'])
     Allocated_CPU = int(Cpu / Sample_Count)
     if Allocated_CPU < 2:
@@ -139,7 +143,7 @@ elif BATCH['Run.type'] == 'Gleevec':
         command = "mkdir -p Results/"
         os.system(command)
 elif BATCH['Run.type'] == 'Varaser':
-    Code = f'/labmed/00.Code/Varaser/Varaser.RNA.v3.py'
+    Code = f'/labmed/00.Code/Varaser/Varaser.py'
     if os.path.isdir("Results"):
         pass
     else:
@@ -184,7 +188,7 @@ with open('BAMSampleSheet.txt', 'r') as samplesheet:
                             + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
                             + f"#SBATCH -n {Cpu}" + '\n'
                             + '\n'
-                            + f"python3 {Code} 03.Output/{Name}.sorted.bam 03.Output/{Name}.haplotype.prcd.vcf {Name} 03.Output -T fastq -N {Cpu}")
+                            + f"python3 {Code} 03.Output/{BAM_file} 03.Output/{Name}.haplotype.prcd.vcf {Name} 03.Output -T fastq -N {Cpu}")
         else:
             with open(f'{Name}/BAMjob.sh', 'w') as note:
                 note.write("#!/bin/bash" + '\n'
