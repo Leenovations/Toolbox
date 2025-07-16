@@ -59,6 +59,32 @@ with open('batch.config', 'r') as batch:
         Key = splitted[0]
         Value = splitted[1]
         BATCH[Key] = Value
+
+BATCH['Tool_GATK'] = f"/media/src/DB/Tools/GATK_4.3/gatk-package-4.3.0.0-local.jar"
+BATCH['Tool_Trimming'] = f"/media/src/DB/Tools/TrimGalore_0.6.10/trim_galore"
+BATCH['Tool_Picard'] = f"/media/src/DB/Tools/picard/build/libs/picard.jar"
+BATCH['Tool_Varscan2'] = f"/media/src/DB/Tools/VARSCAN_2.4.5/VarScan.v2.4.5.jar"
+BATCH['Tool_snpeff'] = f"/media/src/DB/Tools/snpEff/snpEff.jar"
+BATCH['Tool_MELT'] = f"/media/src/Tools/MELTv2.2.2/MELT.jar"
+BATCH['Tool_Arriba'] = f"/media/src/DB/Tools/arriba_v2.4.0/arriba"
+BATCH['Tool_Arriba_draw'] = f"/media/src/DB/Tools/arriba_v2.4.0/draw_fusions.R"
+
+BATCH['BWA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.BWA2"
+BATCH['GTFidx'] = f"/media/src/DB/hg{BATCH['Ref.ver'].split('g')[1]}/01.GTF/GENCODEV48"
+BATCH['GTF'] = f"/media/src/DB/hg{BATCH['Ref.ver'].split('g')[1]}/01.GTF/gencode.v48.hg{BATCH['Ref.ver'].split('g')[1]}.gtf"
+BATCH['FASTA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.fasta"
+BATCH['dbSNP'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.dbsnp138.vcf"
+BATCH['dbINDEL'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.known_indels.vcf"
+BATCH['Mills'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mills_and_1000G_gold_standard.indels.{BATCH['Ref.ver']}.sites.vcf"
+BATCH['gnomAD'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/af-only-gnomad.{BATCH['Ref.ver']}.vcf"
+BATCH['PON'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH['Ref.ver']}.vcf"
+BATCH['ExAC'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/small_exac_common_3_{BATCH['Ref.ver']}.vcf"
+
+BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
+BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
+BATCH['Arriba_proteinDomains'] = f"/media/src/DB/ToolDB/Arriba/protein_domains_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.gff3"
+BATCH['Arriba_cytobands'] = f"/media/src/DB/ToolDB/Arriba/cytobands_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv"
+BATCH['Annovar'] = f"/media/src/DB/ToolDB/Annovar"
 #-----------------------------------------------------------------------------#
 if BATCH['Node'] == 'node01' and int(BATCH['CPU']) > 128:
     raise ValueError("\033[91mValueError: Total CPU is less than 128\033[0m")
