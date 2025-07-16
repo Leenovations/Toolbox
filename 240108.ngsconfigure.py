@@ -59,7 +59,6 @@ with open('batch.config', 'r') as batch:
         Key = splitted[0]
         Value = splitted[1]
         BATCH[Key] = Value
-
 BATCH['Tool_GATK'] = f"/media/src/DB/Tools/GATK_4.3/gatk-package-4.3.0.0-local.jar"
 BATCH['Tool_Trimming'] = f"/media/src/DB/Tools/TrimGalore_0.6.10/trim_galore"
 BATCH['Tool_Picard'] = f"/media/src/DB/Tools/picard/build/libs/picard.jar"
