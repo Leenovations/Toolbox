@@ -89,6 +89,9 @@ BATCH['Arriba_proteinDomains'] = f"/media/src/DB/ToolDB/Arriba/protein_domains_{
 BATCH['Arriba_cytobands'] = f"/media/src/DB/ToolDB/Arriba/cytobands_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv"
 BATCH['Annovar'] = f"/media/src/DB/ToolDB/Annovar"
 #====================================================================================================================================#
+BATCH['Bismark_Reference_human'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/GENCODE.{BATCH['Ref.ver']}.bismark"
+BATCH['Bismark_Reference_lambda'] = f"/media/src/DB/Metagenome/Lambda"
+#====================================================================================================================================#
 if BATCH['Node'] == 'node01' and int(BATCH['CPU']) > 128:
     raise ValueError("\033[91mValueError: Total CPU is less than 128\033[0m")
 elif BATCH['Node'] == 'node02' and int(BATCH['CPU']) > 128:
