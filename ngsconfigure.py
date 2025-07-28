@@ -71,7 +71,8 @@ BATCH['Tool_Arriba_draw'] = f"/media/src/DB/Tools/arriba_v2.4.0/draw_fusions.R"
 #====================================================================================================================================#
 # BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/NCBIp14.FASTA_NCBIp14.GTF"
 # BATCH['GTF'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/NCBI.{BATCH['Ref.ver']}.p14.gtf"
-BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/UCSC.FASTA_GENCODEV48.GTF"
+# BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/UCSC.FASTA_GENCODEV48.GTF"
+BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/GENCODEV48.FASTA_GENCODEV48.GTF"
 BATCH['GTF'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/gencode.v48.{BATCH['Ref.ver']}.gtf"
 #====================================================================================================================================#
 BATCH['BWA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.BWA2"
@@ -81,7 +82,9 @@ BATCH['dbINDEL'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Homo_sapiens_assemb
 BATCH['Mills'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mills_and_1000G_gold_standard.indels.{BATCH['Ref.ver']}.sites.vcf"
 BATCH['gnomAD'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/af-only-gnomad.{BATCH['Ref.ver']}.vcf"
 BATCH['PON'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH['Ref.ver']}.vcf"
-BATCH['ExAC'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/small_exac_common_3_{BATCH['Ref.ver']}.vcf"
+BATCH['ExAC'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/small_exac_common_3.{BATCH['Ref.ver']}.vcf"
+BATCH['Panel_WGS'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH['Ref.ver']}.vcf"
+BATCH['Panel_WES'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WES_pon_{BATCH['Ref.ver']}.vcf"
 #====================================================================================================================================#
 BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
 BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
