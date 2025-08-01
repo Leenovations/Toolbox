@@ -75,6 +75,7 @@ BATCH['Tool_Arriba_draw'] = f"/media/src/DB/Tools/arriba_v2.4.0/draw_fusions.R"
 BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/GENCODEV48.FASTA_GENCODEV48.GTF"
 BATCH['GTF'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/gencode.v48.{BATCH['Ref.ver']}.gtf"
 #====================================================================================================================================#
+# BATCH['PON_WES'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WES_pon_{BATCH['Ref.ver']}.vcf"
 BATCH['BWA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.BWA2"
 BATCH['FASTA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.fasta"
 BATCH['dbSNP'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.dbsnp138.vcf"
@@ -83,8 +84,7 @@ BATCH['Mills'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mills_and_1000G_gold_
 BATCH['gnomAD'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/af-only-gnomad.{BATCH['Ref.ver']}.vcf"
 BATCH['PON'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH['Ref.ver']}.vcf"
 BATCH['ExAC'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/small_exac_common_3.{BATCH['Ref.ver']}.vcf"
-BATCH['Panel_WGS'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH['Ref.ver']}.vcf"
-BATCH['Panel_WES'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WES_pon_{BATCH['Ref.ver']}.vcf"
+BATCH['Panel'] = f"/media/src/DB/{BATCH['Ref.ver']}/02.PANEL/Panel.{BATCH['Panel']}.{BATCH['Ref.ver']}.bed"
 #====================================================================================================================================#
 BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
 BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
@@ -108,36 +108,36 @@ elif BATCH['Node'] == 'node05' and int(BATCH['CPU']) > 56:
 elif BATCH['Node'] == 'node06' and int(BATCH['CPU']) > 32:
     raise ValueError("\033[91mValueError: Total CPU is less than 32\033[0m")
 #-----------------------------------------------------------------------------#
-if BATCH['Node'] == 'node05':
-    Cpu = int(BATCH['CPU'])
-    Allocated_CPU = int(Cpu / Sample_Count)
-    if Allocated_CPU < 1:
-        raise ValueError("\033[91m" + "ValueError: Allocated CPU is less than 1" + "\033[0m")
-    CPU = [Allocated_CPU] * Sample_Count
-    if Sample_Count > 1 :
-        How_many = int(Cpu % Sample_Count) #분배를 1씩 해주는 경우 -> 용량에 따라 나누어야함
-        for idx in Sample_Size_Idx[:How_many]:
-            CPU[idx] += 1
-elif BATCH['Node'] != 'node05':
-    Cpu = int(BATCH['CPU'])
-    Allocated_CPU = int(Cpu / Sample_Count)
-    if Allocated_CPU < 2:
-        raise ValueError("\033[91m" + "ValueError: Allocated CPU is less than 2" + "\033[0m")
-    elif Allocated_CPU >= 2:
-        if Allocated_CPU % 2 == 0:
-            if int(Cpu % Sample_Count) < 2:
-                CPU = [Allocated_CPU] * Sample_Count
-            elif int(Cpu % Sample_Count) >= 2:
-                CPU = [Allocated_CPU] * Sample_Count
-                How_many = int((Cpu % Sample_Count) / 2) #분배를 2씩 해주는 경우 -> 용량에 따라 나누어야함
-                for idx in Sample_Size_Idx[:How_many]:
-                    CPU[idx] += 2
-        elif Allocated_CPU % 2 == 1:
-            CPU = [Allocated_CPU - 1] * Sample_Count
-            Rest_CPU = Sample_Count + Cpu % Sample_Count
-            How_many = int(Rest_CPU / 2) #분배를 2씩 해주는 경우 -> 용량에 따라 나누어야함
+# if BATCH['Node'] == 'node05':
+#     Cpu = int(BATCH['CPU'])
+#     Allocated_CPU = int(Cpu / Sample_Count)
+#     if Allocated_CPU < 1:
+#         raise ValueError("\033[91m" + "ValueError: Allocated CPU is less than 1" + "\033[0m")
+#     CPU = [Allocated_CPU] * Sample_Count
+#     if Sample_Count > 1 :
+#         How_many = int(Cpu % Sample_Count) #분배를 1씩 해주는 경우 -> 용량에 따라 나누어야함
+#         for idx in Sample_Size_Idx[:How_many]:
+#             CPU[idx] += 1
+# elif BATCH['Node'] != 'node05':
+Cpu = int(BATCH['CPU'])
+Allocated_CPU = int(Cpu / Sample_Count)
+if Allocated_CPU < 2:
+    raise ValueError("\033[91m" + "ValueError: Allocated CPU is less than 2" + "\033[0m")
+elif Allocated_CPU >= 2:
+    if Allocated_CPU % 2 == 0:
+        if int(Cpu % Sample_Count) < 2:
+            CPU = [Allocated_CPU] * Sample_Count
+        elif int(Cpu % Sample_Count) >= 2:
+            CPU = [Allocated_CPU] * Sample_Count
+            How_many = int((Cpu % Sample_Count) / 2) #분배를 2씩 해주는 경우 -> 용량에 따라 나누어야함
             for idx in Sample_Size_Idx[:How_many]:
                 CPU[idx] += 2
+    elif Allocated_CPU % 2 == 1:
+        CPU = [Allocated_CPU - 1] * Sample_Count
+        Rest_CPU = Sample_Count + Cpu % Sample_Count
+        How_many = int(Rest_CPU / 2) #분배를 2씩 해주는 경우 -> 용량에 따라 나누어야함
+        for idx in Sample_Size_Idx[:How_many]:
+            CPU[idx] += 2
 #-----------------------------------------------------------------------------#        
 if BATCH['Run.type'] == 'WGS':
     Code = '/labmed/00.Code/Pipeline/WGS.py FASTQ'
