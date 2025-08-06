@@ -86,10 +86,10 @@ BATCH['PON'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH[
 BATCH['ExAC'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/small_exac_common_3.{BATCH['Ref.ver']}.vcf"
 BATCH['Panel'] = f"/media/src/DB/{BATCH['Ref.ver']}/02.PANEL/Panel.{BATCH['Panel']}.{BATCH['Ref.ver']}.bed"
 #====================================================================================================================================#
-BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
-BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv.gz"
-BATCH['Arriba_proteinDomains'] = f"/media/src/DB/ToolDB/Arriba/protein_domains_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.gff3"
-BATCH['Arriba_cytobands'] = f"/media/src/DB/ToolDB/Arriba/cytobands_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.1.0.tsv"
+BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv.gz"
+BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv.gz"
+BATCH['Arriba_proteinDomains'] = f"/media/src/DB/ToolDB/Arriba/protein_domains_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.gff3"
+BATCH['Arriba_cytobands'] = f"/media/src/DB/ToolDB/Arriba/cytobands_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv"
 BATCH['Annovar'] = f"/media/src/DB/ToolDB/Annovar"
 #====================================================================================================================================#
 BATCH['Bismark_Reference_human'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/GENCODE.{BATCH['Ref.ver']}.bismark"
@@ -140,67 +140,33 @@ elif Allocated_CPU >= 2:
             CPU[idx] += 2
 #-----------------------------------------------------------------------------#        
 if BATCH['Run.type'] == 'WGS':
-    Code = '/labmed/00.Code/Pipeline/WGS.py FASTQ'
-    if os.path.isdir("Results"):
-        pass
-    else:
-        command = "mkdir -p Results/"
-        os.system(command)
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
 elif BATCH['Run.type'] == 'WES':
-    Code = '/labmed/00.Code/Pipeline/WES.py FASTQ'
-    if os.path.isdir("Results"):
-        pass
-    else:
-        command = "mkdir -p Results/"
-        os.system(command)
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
 elif BATCH['Run.type'] == 'TARGET':
-    Code = '/labmed/00.Code/Pipeline/TARGET.py FASTQ'
-    if os.path.isdir("Results"):
-        pass
-    else:
-        command = "mkdir -p Results/"
-        os.system(command)
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
 elif BATCH['Run.type'] == 'WGBS':
-    Code = '/labmed/00.Code/Pipeline/WGBS.py FASTQ'
-    if os.path.isdir("Results"):
-        pass
-    else:
-        command = "mkdir -p Results/"
-        os.system(command)
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
 elif BATCH['Run.type'] == 'RNA':
-    Code = '/labmed/00.Code/Pipeline/RNASeq.py FASTQ'
-    if os.path.isdir("Genecount"):
-        pass
-    else:
-        command = "mkdir -p Genecount/"
-        os.system(command)
-elif BATCH['Run.type'] == 'Splicing':
-    Code = '/labmed/00.Code/Pipeline/Splicing.py FASTQ'
-    if os.path.isdir("Genecount"):
-        pass
-    else:
-        command = "mkdir -p Genecount/"
-        os.system(command)
-    if os.path.isdir("Leafcutter"):
-        pass
-    else:
-        command = "mkdir -p Leafcutter/"
-        os.system(command)
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
 elif BATCH['Run.type'] == 'Gleevec':
-    Code = '/labmed/00.Code/Pipeline/Imatinib.py FASTQ'
-    if os.path.isdir("Results"):
-        pass
-    else:
-        command = "mkdir -p Results/"
-        os.system(command)
-
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
 elif BATCH['Run.type'] == 'Varaser':
-    Code = '/labmed/00.Code/Varaser/Varaser.RNA.v3.py'
-    if os.path.isdir("Results"):
-        pass
-    else:
-        command = "mkdir -p Results/"
-        os.system(command)
+    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+# if BATCH['Run.type'] == 'WGS':
+#     Code = '/labmed/00.Code/Pipeline/WGS.py FASTQ'
+# elif BATCH['Run.type'] == 'WES':
+#     Code = '/labmed/00.Code/Pipeline/WES.py FASTQ'
+# elif BATCH['Run.type'] == 'TARGET':
+#     Code = '/labmed/00.Code/Pipeline/TARGET.py FASTQ'
+# elif BATCH['Run.type'] == 'WGBS':
+#     Code = '/labmed/00.Code/Pipeline/WGBS.py FASTQ'
+# elif BATCH['Run.type'] == 'RNA':
+#     Code = '/labmed/00.Code/Pipeline/RNASeq.py FASTQ'
+# elif BATCH['Run.type'] == 'Gleevec':
+#     Code = '/labmed/00.Code/Pipeline/Imatinib.py FASTQ'
+# elif BATCH['Run.type'] == 'Varaser':
+#     Code = '/labmed/00.Code/Varaser/Varaser.RNA.v3.py'
 #-----------------------------------------------------------------------------#
 with open('SampleSheet.txt', 'r') as samplesheet:
     num = 0
@@ -208,11 +174,15 @@ with open('SampleSheet.txt', 'r') as samplesheet:
         line = line.strip()
         splitted = line.split('\t')
         Name = splitted[0]
+        R1 = splitted[1]
+        R2 = splitted[2]
         Cpu = CPU[num]
         BATCH['CPU'] = CPU[num]
         BATCH['SampleCount'] = Sample_Count
         BATCH['Sample.Name'] = Sample_Name
         BATCH['Sample.Dir'] = Sample_Dir
+        BATCH['R1'] = R1
+        BATCH['R2'] = R2
         if os.path.isfile('SampleSheet.control.txt'):
             BATCH['Class'] = Matched[Name][0]
             BATCH['Matched.Sample.Name'] = Matched[Name][1].split('/')[-1]
@@ -231,7 +201,6 @@ with open('SampleSheet.txt', 'r') as samplesheet:
                             + "#" + '\n'
                             + f"#SBATCH -J {BATCH['Run.type']}.{Name}" + '\n'
                             + f"#SBATCH -o Log.%j.out" + '\n'
-                            # + f"#SBATCH -e Error.%j.out" + '\n'
                             + f"#SBATCH --time=UNLIMITED" + '\n'
                             + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
                             + f"#SBATCH -n {Cpu}" + '\n'
@@ -243,13 +212,10 @@ with open('SampleSheet.txt', 'r') as samplesheet:
                             + "#" + '\n'
                             + f"#SBATCH -J {BATCH['Run.type']}.{Name}" + '\n'
                             + f"#SBATCH -o Log.%j.out" + '\n'
-                            # + f"#SBATCH -e Error.%j.out" + '\n'
                             + f"#SBATCH --time=UNLIMITED" + '\n'
                             + f"#SBATCH --nodelist={BATCH['Node']}" + '\n'
                             + f"#SBATCH -n {Cpu}" + '\n'
                             + '\n'
-                            + f'Memory=$(echo "$(free -g | grep Mem | awk \'{{print $7}}\') * 0.7 / {Sample_Count}" | bc)' + '\n'
-                            + f"echo Memory=$Memory >> {Name}.batch.config" + '\n'
                             + f"python3 {Code}")
         num += 1
 #-----------------------------------------------------------------------------#
