@@ -76,6 +76,7 @@ BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/GENCODEV48.FASTA_GEN
 BATCH['GTF'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/gencode.v48.{BATCH['Ref.ver']}.gtf"
 #====================================================================================================================================#
 # BATCH['PON_WES'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WES_pon_{BATCH['Ref.ver']}.vcf"
+BATCH['Panel'] = f"/media/src/DB/{BATCH['Ref.ver']}/02.PANEL/Panel.{BATCH['Panel']}.{BATCH['Ref.ver']}.bed"
 BATCH['BWA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.BWA2"
 BATCH['FASTA'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.fasta"
 BATCH['dbSNP'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Homo_sapiens_assembly{BATCH['Ref.ver'].split('g')[1]}.dbsnp138.vcf"
@@ -84,7 +85,6 @@ BATCH['Mills'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mills_and_1000G_gold_
 BATCH['gnomAD'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/af-only-gnomad.{BATCH['Ref.ver']}.vcf"
 BATCH['PON'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WGS_pon_{BATCH['Ref.ver']}.vcf"
 BATCH['ExAC'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/small_exac_common_3.{BATCH['Ref.ver']}.vcf"
-BATCH['Panel'] = f"/media/src/DB/{BATCH['Ref.ver']}/02.PANEL/Panel.{BATCH['Panel']}.{BATCH['Ref.ver']}.bed"
 #====================================================================================================================================#
 BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv.gz"
 BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv.gz"
