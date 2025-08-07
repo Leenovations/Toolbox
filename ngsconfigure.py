@@ -178,11 +178,13 @@ with open('SampleSheet.txt', 'r') as samplesheet:
         R2 = splitted[2]
         Cpu = CPU[num]
         BATCH['CPU'] = CPU[num]
-        BATCH['SampleCount'] = Sample_Count
-        BATCH['Sample.Name'] = Sample_Name
-        BATCH['Sample.Dir'] = Sample_Dir
+        BATCH['Sample.Run'] = Name
+        BATCH['Sample.Dir'] = Dir + '/' + Name
         BATCH['R1'] = R1
         BATCH['R2'] = R2
+        BATCH['Batch.Sample.Count'] = Sample_Count
+        BATCH['Batch.Sample.Name'] = Sample_Name
+        BATCH['Batch.Sample.Dir'] = Sample_Dir
         if os.path.isfile('SampleSheet.control.txt'):
             BATCH['Class'] = Matched[Name][0]
             BATCH['Matched.Sample.Name'] = Matched[Name][1].split('/')[-1]
