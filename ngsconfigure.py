@@ -190,12 +190,18 @@ with open('SampleSheet.txt', 'r') as samplesheet:
             BATCH['Matched.Sample.Name'] = Matched[Name][1].split('/')[-1]
             BATCH['Matched.Sample.dir'] = Matched[Name][1]
             with open(f'{Name}/{Name}.batch.config', 'w') as note:
+                note.write('#===================================================================================#' + '\n')
                 for Key in BATCH.keys():
                     note.write(Key + '=' + str(BATCH[Key]) + '\n')
+                    if Key == 'AllowMismatch' or Key == 'Bismark_Reference_lambda' or Key == 'R2' or Key == 'Batch.Sample.Dir' or Key == 'tDepth' or Key == 'IGV.Snapshot' or Key == 'FilterScoreMin' or Key == 'Matched.Sample.dir':
+                        note.write('#===================================================================================#' + '\n')
         else:
             with open(f'{Name}/{Name}.batch.config', 'w') as note:
+                note.write('#===================================================================================#' + '\n')
                 for Key in BATCH.keys():
                     note.write(Key + '=' + str(BATCH[Key]) + '\n')
+                    if Key == 'AllowMismatch' or Key == 'Bismark_Reference_lambda' or Key == 'R2' or Key == 'Batch.Sample.Dir' or Key == 'tDepth' or Key == 'IGV.Snapshot' or Key == 'FilterScoreMin':
+                        note.write('#===================================================================================#' + '\n')
 
         if BATCH['Run.type'] == 'Varaser':
             with open(f'{Name}/03.Output/job.sh', 'w') as note:

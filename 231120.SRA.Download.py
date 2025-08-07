@@ -25,7 +25,7 @@ if sys.argv[1] == 'fasterq-dump':
 
         with open(f'00.RawData/{sra}/job.sh', 'w') as note:
             note.write('#!/bin/bash' + '\n' + '#' + '\n' + \
-                        '#SBATCH -J fasterq_dump' + '\n' + \
+                        f'#SBATCH -J {sra}.fasterq_dump' + '\n' + \
                         '#SBATCH -o Log.%j.out' + '\n' + \
                         '#SBATCH --time=UNLIMITED' + '\n' + \
                         f'#SBATCH --nodelist={sys.argv[2]}' + '\n' + \
@@ -44,7 +44,7 @@ elif sys.argv[1] == 'fastq-dump':
 
         with open(f'00.RawData/{sra}/job.sh', 'w') as note:
             note.write('#!/bin/bash' + '\n' + '#' + '\n' + \
-                        '#SBATCH -J fastq_dump' + '\n' + \
+                        f'#SBATCH -J {sra}.fastq_dump' + '\n' + \
                         '#SBATCH -o Log.%j.out' + '\n' + \
                         '#SBATCH --time=UNLIMITED' + '\n' + \
                         f'#SBATCH --nodelist={sys.argv[2]}' + '\n' + \
