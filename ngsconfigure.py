@@ -72,7 +72,7 @@ BATCH['Tool_Arriba_draw'] = f"/media/src/DB/Tools/arriba_v2.4.0/draw_fusions.R"
 # BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/NCBIp14.FASTA_NCBIp14.GTF"
 # BATCH['GTF'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/NCBI.{BATCH['Ref.ver']}.p14.gtf"
 # BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/UCSC.FASTA_GENCODEV48.GTF"
-BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/GENCODEV48.FASTA_GENCODEV48.GTF"
+BATCH['GTFidx'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/UCSC.FASTA_GENCODEV48.GTF"
 BATCH['GTF'] = f"/media/src/DB/{BATCH['Ref.ver']}/01.GTF/gencode.v48.{BATCH['Ref.ver']}.gtf"
 #====================================================================================================================================#
 # BATCH['PON_WES'] = f"/media/src/DB/{BATCH['Ref.ver']}/03.PON/Mutect2_WES_pon_{BATCH['Ref.ver']}.vcf"
