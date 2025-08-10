@@ -90,7 +90,12 @@ BATCH['Arriba_blacklist'] = f"/media/src/DB/ToolDB/Arriba/blacklist_{BATCH['Ref.
 BATCH['Arriba_knownDB'] = f"/media/src/DB/ToolDB/Arriba/known_fusions_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv.gz"
 BATCH['Arriba_proteinDomains'] = f"/media/src/DB/ToolDB/Arriba/protein_domains_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.gff3"
 BATCH['Arriba_cytobands'] = f"/media/src/DB/ToolDB/Arriba/cytobands_{BATCH['Ref.ver']}_hs37d5_GRCh37_v2.4.0.tsv"
-BATCH['Annovar'] = f"/media/src/DB/ToolDB/Annovar"
+BATCH['Annovar_DB'] = f"/media/src/DB/ToolDB/Annovar"
+BATCH['Annovar_table'] = f"/media/src/DB/Tools/Annovar/table_annovar.pl"
+BATCH['Annovar_convert'] = f"/media/src/DB/Tools/Annovar/convert2annovar.pl"
+BATCH['Annovar_annotate'] = f"/media/src/DB/Tools/Annovar/annotate_variation.pl"
+BATCH['CancerVar'] = f"/media/src/DB/Tools/CancerVar/CancerVar.py"
+BATCH['CancerVar_DB'] = f"/media/src/DB/Tools/CancerVar/cancervardb"
 #====================================================================================================================================#
 BATCH['Bismark_Reference_human'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/GENCODE.{BATCH['Ref.ver']}.bismark"
 BATCH['Bismark_Reference_lambda'] = f"/media/src/DB/Metagenome/Lambda"
