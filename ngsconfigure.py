@@ -96,6 +96,8 @@ BATCH['Annovar_convert'] = f"/media/src/DB/Tools/Annovar/convert2annovar.pl"
 BATCH['Annovar_annotate'] = f"/media/src/DB/Tools/Annovar/annotate_variation.pl"
 BATCH['CancerVar'] = f"/media/src/DB/Tools/CancerVar/CancerVar.py"
 BATCH['CancerVar_DB'] = f"/media/src/DB/Tools/CancerVar/cancervardb"
+BATCH['OPAI_process'] = f"/media/src/DB/Tools/CancerVar/OPAI/scripts/feature_preprocess.py"
+BATCH['OPAI_predictor'] = f"/media/src/DB/Tools/CancerVar/OPAI/scripts/opai_predictor.py"
 #====================================================================================================================================#
 BATCH['Bismark_Reference_human'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/GENCODE.{BATCH['Ref.ver']}.bismark"
 BATCH['Bismark_Reference_lambda'] = f"/media/src/DB/Metagenome/Lambda"
