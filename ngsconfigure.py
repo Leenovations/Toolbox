@@ -99,7 +99,7 @@ BATCH['CancerVar_DB'] = f"/media/src/DB/Tools/CancerVar/cancervardb"
 BATCH['OPAI_process'] = f"/media/src/DB/Tools/CancerVar/OPAI/scripts/feature_preprocess.py"
 BATCH['OPAI_predictor'] = f"/media/src/DB/Tools/CancerVar/OPAI/scripts/opai_predictor.py"
 #====================================================================================================================================#
-BATCH['Bismark_Reference_human'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/GENCODE.{BATCH['Ref.ver']}.bismark"
+BATCH['Bismark_Reference_human'] = f"/media/src/DB/{BATCH['Ref.ver']}/00.FASTA/GENCODEV48.{BATCH['Ref.ver']}.bismark"
 BATCH['Bismark_Reference_lambda'] = f"/media/src/DB/Metagenome/Lambda"
 #====================================================================================================================================#
 if BATCH['Node'] == 'node01' and int(BATCH['CPU']) > 128:
@@ -147,19 +147,19 @@ elif Allocated_CPU >= 2:
             CPU[idx] += 2
 #-----------------------------------------------------------------------------#        
 if BATCH['Run.type'] == 'WGS':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'WES':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'TARGET':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'WGBS':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'RNA':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'Gleevec':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'Varaser':
-    Code = '/labmed/00.Code/Pipeline/PANSeq.py FASTQ'
+    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 # if BATCH['Run.type'] == 'WGS':
 #     Code = '/labmed/00.Code/Pipeline/WGS.py FASTQ'
 # elif BATCH['Run.type'] == 'WES':
