@@ -30,7 +30,8 @@ if sys.argv[1] == 'fasterq-dump':
                         '#SBATCH --time=UNLIMITED' + '\n' + \
                         f'#SBATCH --nodelist={sys.argv[2]}' + '\n' + \
                         '#SBATCH -n 2' + '\n' + '\n' + \
-                        f'/media/src/Tools/sratoolkit.3.1.1-ubuntu64/bin/fasterq-dump -S -t TEMP/ -e 2 -O ../ {sra}')
+                        f'/media/src/Tools/sratoolkit.3.1.1-ubuntu64/bin/fasterq-dump -S -t TEMP/ -e 2 -O ../ {sra}' + '\n' + \
+                        f'pigz -p 2 ../{sra}*.fastq')
 
     with open('Total.Run.sh', 'w') as note:
         for sra in SRA_list:

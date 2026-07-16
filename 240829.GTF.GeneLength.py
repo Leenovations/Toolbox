@@ -10,7 +10,8 @@ with open(sys.argv[1], 'r') as gtf:
             else:
                 splitted = line.split('\t')
                 Gene = splitted[2]
-                if Gene == 'gene':
+                Origin = splitted[1]
+                if Gene == 'gene' or Origin == 'UCSC_rmsk':
                     Start = int(splitted[3])
                     End = int(splitted[4])
                     length = str(End - Start)
