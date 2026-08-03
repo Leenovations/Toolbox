@@ -146,16 +146,29 @@ elif Allocated_CPU >= 2:
         for idx in Sample_Size_Idx[:How_many]:
             CPU[idx] += 2
 #-----------------------------------------------------------------------------#        
+print(BATCH['GPU'])
 if BATCH['Run.type'] == 'WGS':
-    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
+    if BATCH['GPU'] == 'Y':
+        Code = f"/labmed/00.Code/GPU_Pipeline/PANSeq.py {BATCH['File.type']}"
+    else:
+        Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'WES':
-    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
+    if BATCH['GPU'] == 'Y':
+        Code = f"/labmed/00.Code/GPU_Pipeline/PANSeq.py {BATCH['File.type']}"
+    else:
+        Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'TARGET':
-    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
+    if BATCH['GPU'] == 'Y':
+        Code = f"/labmed/00.Code/GPU_Pipeline/PANSeq.py {BATCH['File.type']}"
+    else:
+        Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'WGBS':
     Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'RNA':
-    Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
+    if BATCH['GPU'] == 'Y':
+        Code = f"/labmed/00.Code/GPU_Pipeline/PANSeq.py {BATCH['File.type']}"
+    else:
+        Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'Gleevec':
     Code = f"/labmed/00.Code/Pipeline/PANSeq.py {BATCH['File.type']}"
 elif BATCH['Run.type'] == 'Varaser':
